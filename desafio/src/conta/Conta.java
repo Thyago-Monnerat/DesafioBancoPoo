@@ -1,33 +1,28 @@
 package conta;
 
-import cliente.Cliente;
+import java.util.List;
+
+import banco.Banco;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
-public abstract class Conta {
-    private String banco;
+public abstract class Conta extends Banco{
     private int numero;
     private int digito;
     private String local;
     private double saldo;
-    private Cliente cliente;
+    private List<Conta> extrato;
     
-    public Conta(String banco, int numero, int digito, String local, Cliente cliente) {
-        this.banco = banco;
-        this.numero = numero;
+    public Conta(int conta, int digito, String local) {
+        this.numero = conta;
         this.digito = digito;
         this.local = local;
-        this.cliente = cliente;
     }
 
     @Override
     public String toString() {
-        return "\nBanco= " + banco + "\nConta= " + numero + "\nDigito= " + digito + "\nLocal= " + local + "\nSaldo=" + saldo + "\nCliente="
-                + cliente;
+        return "\nConta= " + numero + "\nDigito= " + digito + "\nLocal= " + local + "\nSaldo=" + saldo;
     }   
-    
-    
 }

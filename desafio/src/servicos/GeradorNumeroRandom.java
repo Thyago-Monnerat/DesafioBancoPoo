@@ -16,7 +16,7 @@ public class GeradorNumeroRandom {
         this.listaNumeros = new HashSet<>();
     }
 
-    protected int gerador(int tamanho) {
+    public int gerador(int tamanho) {
         Random random = new Random();
         StringBuilder numeroConta = new StringBuilder();
         for(int i=0;i<tamanho;i++){
