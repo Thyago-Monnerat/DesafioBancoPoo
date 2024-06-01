@@ -51,9 +51,8 @@ public abstract class Conta extends Banco{
         }
     }
 
-
     @Override
     public String toString() {
-        return "\nConta= " + numero + "\nDigito= " + digito + "\nLocal= " + local + "\nSaldo=" + saldo + "\n";
+        return "Conta= " + numero + "\nDigito= " + digito + "\nLocal= " + local + "\nSaldo=" + saldo;
     }   
 }

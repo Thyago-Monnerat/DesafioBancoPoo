@@ -6,7 +6,6 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-
 import banco.Banco;
 import conta.Conta;
 import conta.Corrente;
@@ -27,9 +26,9 @@ public class Cliente{
         this.id = id;
         this.nome = nome;
         if(tipo){
-            this.conta = new Corrente(id / 10000, id % 1000, "BR");
+            this.conta = new Corrente(id / 1000, id % 1000, "BR");
         }else{
-            this.conta = new Poupanca(id / 10000, id % 1000, "BR");
+            this.conta = new Poupanca(id / 1000, id % 1000, "BR");
         }  
         if(Period.between(dataNasc, LocalDate.now()).getYears() < 18){
             throw new MenorIdadeException();
@@ -43,7 +42,7 @@ public class Cliente{
 
     @Override
     public String toString() {
-        return "\nId= " + id + "\nNome= " + nome + "\nData de nascimento= " + dataNasc.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\nCPF= " + cpf + "\n";
+        return "\nId= " + id + "\nNome= " + nome + "\nData de nascimento= " + dataNasc.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\nCPF= " + cpf + "\n" + conta + "\n";
     }
 
     public static void main(String[] args) {
@@ -72,9 +71,9 @@ public class Cliente{
 
         cliente5.getConta().sacar(40);
 
-        System.out.println(banco.getListaContas());
+        cliente3.getBanco().apagarConta(cliente8);
 
-        cliente3.getBanco().apagarConta(1001008);
+        System.out.println(banco.getListaContas());
     
      }
 

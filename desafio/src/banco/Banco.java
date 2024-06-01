@@ -1,21 +1,22 @@
 package banco;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import cliente.Cliente;
 import conta.Conta;
 import lombok.Getter;
-import lombok.ToString;
 
 @Getter
 public class Banco{
     private String nome;
-    private Map<Cliente, Conta> listaContas;
+    private List<Cliente> listaContas;
     private static Banco instancia;
 
     public Banco() {
-        this.listaContas = new HashMap<>();
+        this.listaContas = new ArrayList<>();
     }
 
     public static Banco getInstancia(){
@@ -25,21 +26,16 @@ public class Banco{
         return instancia;
     }
 
-    @Override
-    public String toString() {
-        return "Nome=" + nome + "\nLista de Contas=" + listaContas + "\n";
-    }
-
-    public void apagarConta(int id){
+    public void apagarConta(Cliente cliente){
         if(listaContas.isEmpty()){
             throw new NullPointerException("Lista Vazia");
         }else{
-            listaContas.remove(id);
+            listaContas.remove(cliente);
         }
     }
 
     public void registrarCliente(Cliente cliente){
-        listaContas.put(cliente, cliente.getConta());
+        listaContas.add(cliente);
     };
 
 }
