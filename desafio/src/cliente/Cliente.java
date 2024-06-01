@@ -2,7 +2,6 @@ package cliente;
 
 import lombok.Getter;
 import lombok.Setter;
-import servicos.GeradorNumeroRandom;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -22,7 +21,7 @@ public class Cliente{
     private LocalDate dataNasc;
     private Long cpf;
     private Conta conta;
-    public Banco banco =  Banco.getIntancia();
+    public Banco banco =  Banco.getInstancia();
 
     public Cliente(int id, String nome, LocalDate dataNasc, Long cpf, boolean tipo) {
         this.id = id;
@@ -44,11 +43,11 @@ public class Cliente{
 
     @Override
     public String toString() {
-        return "Id= " + id + "\nNome= " + nome + "\nData de nascimento= " + dataNasc.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\nCPF= " + cpf + "\n";
+        return "\nId= " + id + "\nNome= " + nome + "\nData de nascimento= " + dataNasc.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\nCPF= " + cpf + "\n";
     }
 
     public static void main(String[] args) {
-        Banco banco =  Banco.getIntancia();
+        Banco banco =  Banco.getInstancia();
 
         Cliente cliente1 = new Cliente(1001001, "Alice", LocalDate.of(1995, 3, 15), 12345678901L, true);
         Cliente cliente2 = new Cliente(1001002, "Bob", LocalDate.of(1990, 8, 21), 23456789012L, false);
@@ -61,8 +60,23 @@ public class Cliente{
         Cliente cliente9 = new Cliente(1001009, "Ian", LocalDate.of(1987, 2, 25), 90123456789L, true);
         Cliente cliente10 = new Cliente(1001010, "Jessica", LocalDate.of(1996, 11, 3), 12345098765L, false);
         
+        cliente1.getConta().depositar(100);
+        ((Corrente) cliente1.getConta()).transferir(80, cliente5);
+
+        cliente2.getConta().depositar(200);
+        cliente2.getConta().setLocal("EUA");
+        cliente2.getConta().sacar(135);
+        
+        cliente3.getConta().depositar(75);
+        cliente3.getConta().sacar(50);
+
+        cliente5.getConta().sacar(40);
+
         System.out.println(banco.getListaContas());
-    }
+
+        cliente3.getBanco().apagarConta(1001008);
+    
+     }
 
     
 }
