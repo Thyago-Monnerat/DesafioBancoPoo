@@ -1,22 +1,19 @@
 package banco;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import cliente.Cliente;
-import conta.Conta;
 import lombok.Getter;
 
 @Getter
 public class Banco{
     private String nome;
-    private List<Cliente> listaContas;
+    private Set<Cliente> listaContas;
     private static Banco instancia;
 
     public Banco() {
-        this.listaContas = new ArrayList<>();
+        this.listaContas = new LinkedHashSet<>();
     }
 
     public static Banco getInstancia(){
