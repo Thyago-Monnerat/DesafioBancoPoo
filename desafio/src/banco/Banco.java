@@ -16,6 +16,35 @@ public class Banco{
         this.listaContas = new LinkedHashSet<>();
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((listaContas == null) ? 0 : listaContas.hashCode());
+        return result;
+    }
+
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Banco other = (Banco) obj;
+        if (listaContas == null) {
+            if (other.listaContas != null)
+                return false;
+        } else if (!listaContas.equals(other.listaContas))
+            return false;
+        return true;
+    }
+
+
+
     public static Banco getInstancia(){
         if(instancia == null){
             instancia = new Banco();
@@ -34,5 +63,7 @@ public class Banco{
     public void registrarCliente(Cliente cliente){
         listaContas.add(cliente);
     };
+
+
 
 }
